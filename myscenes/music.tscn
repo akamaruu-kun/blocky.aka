@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dr8cb4rjjqdae"]
+
+[ext_resource type="AudioStream" uid="uid://bfgpydna8jh5t" path="res://myassets/soundsmyveryfirstgame/nomusiccocowind.mp3" id="1_i5dlv"]
+
+[node name="music" type="AudioStreamPlayer2D" unique_id=2083611358]
+stream = ExtResource("1_i5dlv")
+volume_db = -6.367
+autoplay = true
+bus = &"msuic"

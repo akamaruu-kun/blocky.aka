@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c1wogjksqbb76"]
+
+[ext_resource type="Texture2D" uid="uid://cccvtad0cnsji" path="res://myassets/spritesnstuff/1.png" id="1_k5res"]
+[ext_resource type="Texture2D" uid="uid://cce2gft41txkn" path="res://myassets/spritesnstuff/3.png" id="2_qgsny"]
+[ext_resource type="Texture2D" uid="uid://bb4oiecyfn6tj" path="res://myassets/spritesnstuff/2.png" id="3_rps1h"]
+[ext_resource type="Script" uid="uid://cj2g3acuibgpt" path="res://dialoguebutton_1.gd" id="4_qddys"]
+[ext_resource type="AudioStream" uid="uid://dh3665yrehcfq" path="res://myassets/soundsmyveryfirstgame/whatsapp-ptt-2026-10-02-at-150931_lJh29Zgl.mp3" id="5_k5res"]
+
+[node name="dialoguebutton1" type="TextureButton" unique_id=1096263859]
+offset_right = 40.0
+offset_bottom = 40.0
+focus_mode = 0
+texture_normal = ExtResource("1_k5res")
+texture_pressed = ExtResource("2_qgsny")
+texture_hover = ExtResource("3_rps1h")
+script = ExtResource("4_qddys")
+
+[node name="istg" type="AudioStreamPlayer2D" parent="." unique_id=449226209]
+stream = ExtResource("5_k5res")
+volume_db = -10.896
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

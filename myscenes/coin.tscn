@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://dxkcnj3s66tgj"]
+
+[ext_resource type="Script" uid="uid://jdt6p6fwxr6a" path="res://myscript/coin.gd" id="1_224cy"]
+[ext_resource type="Texture2D" uid="uid://bd0dkqpueltvu" path="res://myassets/spritesnstuff/coin.png" id="1_ehb8k"]
+[ext_resource type="AudioStream" uid="uid://dvjfevlpsrt7k" path="res://myassets/soundsmyveryfirstgame/Mario Coin Sound - Sound Effect (HD) - Gaming Sound FX.mp3" id="3_an84f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh68p"]
+radius = 3.0
+
+[sub_resource type="Animation" id="Animation_an84f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ni0e2"]
+resource_name = "coins"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.9, 0.16666669),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666669),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_comer"]
+_data = {
+&"RESET": SubResource("Animation_an84f"),
+&"coins": SubResource("Animation_ni0e2")
+}
+
+[node name="coin" type="Area2D" unique_id=108908265]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_224cy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472544297]
+texture = ExtResource("1_ehb8k")
+region_enabled = true
+region_rect = Rect2(47, 42, 5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=191867009]
+shape = SubResource("CircleShape2D_bh68p")
+
+[node name="coinsound" type="AudioStreamPlayer2D" parent="." unique_id=1750998697]
+stream = ExtResource("3_an84f")
+volume_db = -29.289
+bus = &"sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=749443076]
+root_node = NodePath("../coinsound")
+libraries/ = SubResource("AnimationLibrary_comer")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
